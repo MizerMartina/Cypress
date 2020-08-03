@@ -1,0 +1,265 @@
+{
+    "galleries":[
+       {
+          "id":1009,
+          "title":"dasdasdad",
+          "description":"dasdasdasd",
+          "user_id":36,
+          "created_at":"2020-08-03 16:15:46",
+          "updated_at":"2020-08-03 16:15:46",
+          "user":{
+             "id":36,
+             "first_name":"ogi",
+             "last_name":"pet",
+             "email":"zoomght@gmail.com",
+             "terms_and_conditions":1,
+             "created_at":"2020-08-03 16:15:19",
+             "updated_at":"2020-08-03 16:15:19"
+          },
+          "images":[
+             {
+                "id":1162,
+                "image_url":"https:\/\/bg-gallery-api.vivifyideas.com\/media\/newsletter_image\/bg_image.jpg",
+                "gallery_id":1009,
+                "created_at":"2020-08-03 16:15:46",
+                "updated_at":"2020-08-03 16:15:46"
+             }
+          ]
+       },
+       {
+          "id":543,
+          "title":"Galerija No name ++",
+          "description":"Description of No name ++ gallery",
+          "user_id":4,
+          "created_at":"2020-08-02 11:59:43",
+          "updated_at":"2020-08-02 11:59:43",
+          "user":{
+             "id":4,
+             "first_name":"Jelena",
+             "last_name":"Krstic",
+             "email":"jelllenakrstic@gmail.com",
+             "terms_and_conditions":1,
+             "created_at":"2020-07-30 10:34:30",
+             "updated_at":"2020-07-30 10:34:30"
+          },
+          "images":[
+             {
+                "id":691,
+                "image_url":"https:\/\/jamiewright.dev\/wp-content\/uploads\/2019\/02\/test.jpg",
+                "gallery_id":543,
+                "created_at":"2020-08-02 11:59:43",
+                "updated_at":"2020-08-02 11:59:43"
+             }
+          ]
+       },
+       {
+          "id":542,
+          "title":"Galerija No name10",
+          "description":"Description of No name gallery",
+          "user_id":4,
+          "created_at":"2020-08-02 11:59:09",
+          "updated_at":"2020-08-02 11:59:09",
+          "user":{
+             "id":4,
+             "first_name":"Jelena",
+             "last_name":"Krstic",
+             "email":"jelllenakrstic@gmail.com",
+             "terms_and_conditions":1,
+             "created_at":"2020-07-30 10:34:30",
+             "updated_at":"2020-07-30 10:34:30"
+          },
+          "images":[
+             {
+                "id":690,
+                "image_url":"https:\/\/www.kualitee.com\/wp-content\/uploads\/2020\/07\/Importance-of-test-case-management-tools-for-startups.jpg",
+                "gallery_id":542,
+                "created_at":"2020-08-02 11:59:09",
+                "updated_at":"2020-08-02 11:59:09"
+             }
+          ]
+       },
+       {
+          "id":541,
+          "title":"Galerija No name9",
+          "description":"Description of No name gallery",
+          "user_id":4,
+          "created_at":"2020-08-02 11:58:32",
+          "updated_at":"2020-08-02 11:58:32",
+          "user":{
+             "id":4,
+             "first_name":"Jelena",
+             "last_name":"Krstic",
+             "email":"jelllenakrstic@gmail.com",
+             "terms_and_conditions":1,
+             "created_at":"2020-07-30 10:34:30",
+             "updated_at":"2020-07-30 10:34:30"
+          },
+          "images":[
+             {
+                "id":689,
+                "image_url":"https:\/\/www.kualitee.com\/wp-content\/uploads\/2020\/07\/Importance-of-test-case-management-tools-for-startups.jpg",
+                "gallery_id":541,
+                "created_at":"2020-08-02 11:58:32",
+                "updated_at":"2020-08-02 11:58:32"
+             }
+          ]
+       },
+       {
+          "id":540,
+          "title":"Galerija No name8",
+          "description":"Description of No name gallery",
+          "user_id":4,
+          "created_at":"2020-08-02 11:57:57",
+          "updated_at":"2020-08-02 11:57:57",
+          "user":{
+             "id":4,
+             "first_name":"Jelena",
+             "last_name":"Krstic",
+             "email":"jelllenakrstic@gmail.com",
+             "terms_and_conditions":1,
+             "created_at":"2020-07-30 10:34:30",
+             "updated_at":"2020-07-30 10:34:30"
+          },
+          "images":[
+             {
+                "id":688,
+                "image_url":"https:\/\/www.kualitee.com\/wp-content\/uploads\/2020\/07\/Importance-of-test-case-management-tools-for-startups.jpg",
+                "gallery_id":540,
+                "created_at":"2020-08-02 11:57:57",
+                "updated_at":"2020-08-02 11:57:57"
+             }
+          ]
+       },
+       {
+          "id":536,
+          "title":"Galerija No name7",
+          "description":"Description of No name gallery",
+          "user_id":4,
+          "created_at":"2020-08-02 11:57:25",
+          "updated_at":"2020-08-02 11:57:25",
+          "user":{
+             "id":4,
+             "first_name":"Jelena",
+             "last_name":"Krstic",
+             "email":"jelllenakrstic@gmail.com",
+             "terms_and_conditions":1,
+             "created_at":"2020-07-30 10:34:30",
+             "updated_at":"2020-07-30 10:34:30"
+          },
+          "images":[
+             {
+                "id":684,
+                "image_url":"https:\/\/www.kualitee.com\/wp-content\/uploads\/2020\/07\/Importance-of-test-case-management-tools-for-startups.jpg",
+                "gallery_id":536,
+                "created_at":"2020-08-02 11:57:25",
+                "updated_at":"2020-08-02 11:57:25"
+             }
+          ]
+       },
+       {
+          "id":532,
+          "title":"Galerija No name6",
+          "description":"Description of No name gallery",
+          "user_id":4,
+          "created_at":"2020-08-02 11:56:55",
+          "updated_at":"2020-08-02 11:56:55",
+          "user":{
+             "id":4,
+             "first_name":"Jelena",
+             "last_name":"Krstic",
+             "email":"jelllenakrstic@gmail.com",
+             "terms_and_conditions":1,
+             "created_at":"2020-07-30 10:34:30",
+             "updated_at":"2020-07-30 10:34:30"
+          },
+          "images":[
+             {
+                "id":680,
+                "image_url":"https:\/\/www.kualitee.com\/wp-content\/uploads\/2020\/07\/Importance-of-test-case-management-tools-for-startups.jpg",
+                "gallery_id":532,
+                "created_at":"2020-08-02 11:56:55",
+                "updated_at":"2020-08-02 11:56:55"
+             }
+          ]
+       },
+       {
+          "id":527,
+          "title":"Galerija No name5",
+          "description":"Description of No name gallery",
+          "user_id":4,
+          "created_at":"2020-08-02 11:56:28",
+          "updated_at":"2020-08-02 11:56:28",
+          "user":{
+             "id":4,
+             "first_name":"Jelena",
+             "last_name":"Krstic",
+             "email":"jelllenakrstic@gmail.com",
+             "terms_and_conditions":1,
+             "created_at":"2020-07-30 10:34:30",
+             "updated_at":"2020-07-30 10:34:30"
+          },
+          "images":[
+             {
+                "id":675,
+                "image_url":"https:\/\/www.kualitee.com\/wp-content\/uploads\/2020\/07\/Importance-of-test-case-management-tools-for-startups.jpg",
+                "gallery_id":527,
+                "created_at":"2020-08-02 11:56:28",
+                "updated_at":"2020-08-02 11:56:28"
+             }
+          ]
+       },
+       {
+          "id":524,
+          "title":"Galerija No name4",
+          "description":"Description of No name gallery",
+          "user_id":4,
+          "created_at":"2020-08-02 11:56:05",
+          "updated_at":"2020-08-02 11:56:05",
+          "user":{
+             "id":4,
+             "first_name":"Jelena",
+             "last_name":"Krstic",
+             "email":"jelllenakrstic@gmail.com",
+             "terms_and_conditions":1,
+             "created_at":"2020-07-30 10:34:30",
+             "updated_at":"2020-07-30 10:34:30"
+          },
+          "images":[
+             {
+                "id":672,
+                "image_url":"https:\/\/www.kualitee.com\/wp-content\/uploads\/2020\/07\/Importance-of-test-case-management-tools-for-startups.jpg",
+                "gallery_id":524,
+                "created_at":"2020-08-02 11:56:05",
+                "updated_at":"2020-08-02 11:56:05"
+             }
+          ]
+       },
+       {
+          "id":523,
+          "title":"Galerija No name3",
+          "description":"Description of No name gallery",
+          "user_id":4,
+          "created_at":"2020-08-02 11:55:45",
+          "updated_at":"2020-08-02 11:55:45",
+          "user":{
+             "id":4,
+             "first_name":"Jelena",
+             "last_name":"Krstic",
+             "email":"jelllenakrstic@gmail.com",
+             "terms_and_conditions":1,
+             "created_at":"2020-07-30 10:34:30",
+             "updated_at":"2020-07-30 10:34:30"
+          },
+          "images":[
+             {
+                "id":671,
+                "image_url":"https:\/\/www.kualitee.com\/wp-content\/uploads\/2020\/07\/Importance-of-test-case-management-tools-for-startups.jpg",
+                "gallery_id":523,
+                "created_at":"2020-08-02 11:55:45",
+                "updated_at":"2020-08-02 11:55:45"
+             }
+          ]
+       }
+    ],
+    "count":57
+ }

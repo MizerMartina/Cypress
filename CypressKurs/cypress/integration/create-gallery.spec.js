@@ -91,10 +91,10 @@ describe('Create gallery module - visible', () => {
             cy.get(".nav-link").contains("My Galleries").click();
             cy.url().should("include", "/my-galleries");
             cy.get('h4').contains("No galleries found").should('not.be.visible');
-            cy.get('div.grid>.cell').eq(0)
-            cy.get('div.grid').children()
+            cy.get('.box-title').eq(0).click();
+           cy.get('.btn-custom').contains('Delete Gallery').should('be.visible').click(); 
         }
-        cy.get('div.grid').children().should('have.length');
+        cy.get('h4').contains("No galleries found").should('be.visible');
         cy.get('.btn').contains("Load more").should('not.be.visible');
 
     })

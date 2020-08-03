@@ -1,4 +1,4 @@
 export const EMAIL = {
-    EXISTING: "1test@test.com",
-    PASSWORD: "123456789"
+    EXISTING: "test1@test.com",
+    PASSWORD: "test1test"
 }
