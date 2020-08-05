@@ -20,10 +20,15 @@ export default class CreateGallery {
     get cancelButton() {
         return cy.get('button[type=submit]').contains("Cancel")
     }
+    get editGalleryButton() {
+        return cy.get('button[type=button]').contains("Edit Gallery")
+    }
+    
 
     get loadMoreButton() {
         return cy.get('.btn').contains("Load More");
     }
+
 
     newGallery (naziv, opis, urlSlike) {
         this.title.type(naziv);

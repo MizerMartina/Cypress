@@ -1,0 +1,830 @@
+{
+	"info": {
+		"_postman_id": "869cb411-d7e5-4a1f-8cd6-5a115572f877",
+		"name": "VS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6c195b52-7b6a-4bda-87c3-90bf9a4ac8d2",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"token\", jsonData.token);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.environment.set(\"userId\", jsonData.user.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"tamara.p@vivifyideas.com\",\"password\":\"tamara\",\"g-recaptcha-response\":\"03AOLTBLSfIbYuw3u37soxkxUAl1BZV5s0G0trJHdeO1E7BKkwShiVAp_wc_LusO17pKEeRFJ8VoWRqYVSXSExMhI7gn9Qc8Ax2KoR5nnfr5haPxxoURP8VnL8I0UQOv-K1eCXPbdwCG2DfT8jITlxG3cEjZubXTNDI90UwgYtGCzFku7msTq7bnRv826CblYcQYVzo9RcREl4vjM3BHOGCn_ksANorPaJ4fL8JN-xORc2BLeKwehMPMczL9EipWQavljdLkWJ-stQOYHJYIlISSEtdWqFT9oVTDV6M6UihQ-e9O1cGhstlQoxPf0rLAYxKWB-g1PqcmkrM8YOdgF4eA2do5uI24VlEcTCkTaa03SymuEsEADrrjqHvC50vg9Ho90kbqdCyRNFRji1j5EHuiVSBrSy3SdIwup3IaAJcl0sWOM1-L4-rVKG9Vs4vtu6VzL1qLmkBe46bpIRvDuZaVUrToQOOuk4owa2xz1RR06tNmNYLzbV4fBeX-YL2aw71SZ_TTpKuulF\"}"
+				},
+				"url": {
+					"raw": "{{url}}v2/login",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ca12e2e-0ba8-4480-9745-3488e7f29574",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"var bordovi = jsonData[1].boards",
+							"",
+							"for (i=0; i<bordovi.length;i++){",
+							"  ",
+							"  if (bordovi[i].name === \"QA ACADEMY 2\"){",
+							"    pm.environment.set(\"boardId\", bordovi[i].id);",
+							"    console.log(bordovi[i].id);",
+							"  }",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}v2/my-organizations",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"my-organizations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get my sprint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36410dd2-9a0c-4839-a216-405aa0f2f101",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"console.log(jsonData.sprints);",
+							"var sprints = jsonData.sprints",
+							"",
+							"for (i=0; i<sprints.length;i++){",
+							"  ",
+							"  if (sprints[i].name === \"DONE\"){",
+							"    pm.environment.set(\"doneColumn\", sprints[i].id);",
+							"    console.log(sprints[i].id);",
+							"  }",
+							"}",
+							"",
+							"for (i=0; i<sprints.length;i++){",
+							"  ",
+							"  if (sprints[i].name === \"testko testeric\"){",
+							"    pm.environment.set(\"myColumn\", sprints[i].id);",
+							"    console.log(sprints[i].id);",
+							"  }",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}v2/boards/{{boardId}}",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"boards",
+						"{{boardId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d6be668-5414-4f20-b455-df0699a10d35",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"taskId\", jsonData.id);",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"pm.test(\"Name is ok\", function () {",
+							"  pm.expect(jsonData.name).to.include(\"hello\");",
+							"});",
+							"var poslatiBoard = pm.environment.get(\"boardId\");",
+							"var poslatiSprint = pm.environment.get(\"myColumn\");",
+							"var mojUser = pm.environment.get(\"userId\");",
+							"",
+							"tests[\"Task je vezan za dobar board\"] = poslatiBoard == jsonData.board_id;",
+							"tests[\"Task je napravljen u dobroj klononi\"] = poslatiSprint == jsonData.sprint_id;",
+							"tests[\"Task je vezan za pravog usera\"] = mojUser == jsonData.user_id;",
+							"",
+							"pm.environment.set(\"taskName\", jsonData.name);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"item\":{\n      \"name\":\"hello {{$timestamp}}\",\n      \"board_id\":{{boardId}},\n      \"sprint_id\":{{myColumn}},\n      \"sprint_backlog_column_id\":null,\n      \"priority_id\":2,\n      \"parent_id\":null,\n      \"labels\":[\n\n      ],\n      \"doers\":[\n\n      ],\n      \"reviewers\":[\n\n      ],\n      \"type_id\":1,\n      \"points_id\":null,\n      \"taskvalue_id\":1,\n      \"checklists\":[\n\n      ],\n      \"blocking_task_id\":null\n   },\n   \"prev\":{\n      \"id\":{{myColumn}},\n      \"order\":0.07\n   },\n   \"next\":null,\n   \"board_id\":{{boardId}},\n   \"isOnSprint\":true\n}"
+				},
+				"url": {
+					"raw": "{{url}}v2/tasks",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "move task to Done",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "690e6f75-7f44-4f5c-9fc4-012c7beeaedc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"var done = pm.environment.get(\"doneColumn\");",
+							"tests[\"Task je otisao u done\"] = done == jsonData[0].sprint_id;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"change_sprint_id\":false,\n   \"tasks\":[\n      {\n         \"id\":{{taskId}},\n         \"board_id\":{{boardId}}\n      }\n   ],\n   \"sprint_id\":{{doneColumn}}\n  \n}"
+				},
+				"url": {
+					"raw": "{{url}}v2/boards/{{boardId}}/update-tasks-order",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"boards",
+						"{{boardId}}",
+						"update-tasks-order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add pic",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "51480cb9-362a-4846-8ca4-9215ad04f4de",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"slika\", jsonData.id);",
+							"postman.setEnvironmentVariable(\"path\", jsonData.path);",
+							"postman.setEnvironmentVariable(\"picName\", jsonData.name);",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var task= pm.variables.get(\"taskId\");",
+							"var name= pm.variables.get(\"picName\");",
+							"",
+							" tests[\"Name is ok\"] = jsonData.name==name;",
+							"  tests[\"Task is ok\"] = jsonData.task_id==task;",
+							" ",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "home/academy/Desktop/Marta/vs"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}v2/tasks/{{taskId}}/files?group=description&storeOnlyImages=true",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"tasks",
+						"{{taskId}}",
+						"files"
+					],
+					"query": [
+						{
+							"key": "group",
+							"value": "description"
+						},
+						{
+							"key": "storeOnlyImages",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save picture",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dbad1b47-f713-4238-85dc-77dfd2fc24c9",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var path = pm.variables.get(\"path\");",
+							"pm.test(\"Description is ok\", function () {",
+							"   pm.expect(jsonData.description).to.include(path);",
+							" });",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"id\":{{taskId}},\n    \"name\":\"{{taskName}}\",\n   \"description\":\"![{{picName}}]({{path}})\",\n   \"points_id\":null,\n   \"priority_id\":2,\n   \"taskvalue_id\":1,\n   \"type_id\":1,\n   \"parent_id\":null,\n   \"checklists\":[\n\n   ],\n   \"board_id\":{{boardId}},\n   \"sprint_id\":{{doneColumn}},\n   \"sprint_backlog_column_id\":328448,\n   \"blocking_task_id\":null,\n   \"doers\":[\n\n   ],\n   \"reviewers\":[\n\n   ],\n   \"labels\":[\n\n   ]\n}"
+				},
+				"url": {
+					"raw": "{{url}}v2/tasks/{{taskId}}",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"tasks",
+						"{{taskId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit task- add doers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "456327f5-3230-4e95-98c2-f2f1df2d1f5d",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"var mojUser = pm.environment.get(\"userId\");",
+							" tests[\"Doer is changed\"] = jsonData.doers[0].id==mojUser;",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"user_id\":{{userId}}}"
+				},
+				"url": {
+					"raw": "{{url}}v2/tasks/{{taskId}}/doers",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"tasks",
+						"{{taskId}}",
+						"doers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "file attachment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "951755a8-50b3-4d70-bf95-30f9471c7afa",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"var task= pm.variables.get(\"taskId\");",
+							"var board= pm.variables.get(\"boardId\");",
+							"var juzer = pm.variables.get(\"userId\");",
+							"",
+							"",
+							"",
+							" tests[\"Task is ok\"] = jsonData.task_id==task;",
+							" tests[\"Board is ok\"] = jsonData.board_id==board;",
+							"  tests[\"User is ok\"] = jsonData.user_id==juzer;",
+							"  tests[\"Type is ok\"] = jsonData.mimetype===\"image/png\";",
+							"tests[\"It is an image\"] = jsonData.is_image===true;",
+							"",
+							"",
+							"pm.environment.set(\"fileId\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/tamara/Desktop/postman/bug.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}v2/tasks/{{taskId}}/files",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"tasks",
+						"{{taskId}}",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e1fdf49-81b4-4ae1-91f4-99cea9b327f7",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var ajdi = pm.variables.get(\"taskId\");",
+							"tests[\"AjDi is ok\"] = jsonData.id==ajdi;",
+							"var name= pm.variables.get(\"taskName\");",
+							"",
+							" tests[\"Name is ok\"] = jsonData.name===name;",
+							"",
+							"var path = pm.variables.get(\"path\");  ",
+							"",
+							"",
+							" ",
+							" ",
+							" tests[\"File count\"] = jsonData.file_count>=1;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}v2/tasks/{{taskId}}/all-data",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"tasks",
+						"{{taskId}}",
+						"all-data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e1fdf49-81b4-4ae1-91f4-99cea9b327f7",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"",
+							"var taskAjdi = pm.variables.get(\"taskId\");",
+							"tests[\"AjDi is ok\"] = jsonData.timeline.activities[0].type_id==taskAjdi;",
+							"",
+							"var fajlAjdi = pm.variables.get(\"fileId\");",
+							"tests[\"Fajl is ok\"] = jsonData.files[0].id==fajlAjdi;",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}v2/tasks/{{taskId}}/data",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"tasks",
+						"{{taskId}}",
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "brisi file",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e202be61-8b07-48e7-aebf-7e127188ba4d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}v2/tasks/{{taskId}}/files/{{fileId}}",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"tasks",
+						"{{taskId}}",
+						"files",
+						"{{fileId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "proveri da li je stvarno obrisan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e1fdf49-81b4-4ae1-91f4-99cea9b327f7",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var taskAjdi = pm.variables.get(\"taskId\");",
+							"",
+							"",
+							"pm.test(\"Data array is empty\", function () {",
+							"  ",
+							"    pm.expect(jsonData.files.length).to.eql(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}v2/tasks/{{taskId}}/data",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"tasks",
+						"{{taskId}}",
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "92ba6dfd-79b2-4271-be6e-d9850cfa8d0a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}v2/tasks/{{taskId}}?boardId={{boardId}}",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"tasks",
+						"{{taskId}}"
+					],
+					"query": [
+						{
+							"key": "boardId",
+							"value": "{{boardId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "provera da nema taska",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f812d848-7285-423b-9ac1-fe945708298f",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"var taskId = pm.variables.get(\"taskId\");",
+							"var idExist = false;",
+							"",
+							"for (i=0; i<jsonData.tasks.length;i++){",
+							"  ",
+							"  if (jsonData.tasks[i].id == taskId){",
+							"      idExist = true;",
+							"  }",
+							"}",
+							"",
+							"tests[\"Stvarno je izbrisan\"] = idExist === false;",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}v2/boards/{{boardId}}",
+					"host": [
+						"{{url}}v2"
+					],
+					"path": [
+						"boards",
+						"{{boardId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

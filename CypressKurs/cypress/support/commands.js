@@ -39,13 +39,37 @@ Cypress.Commands.add("loginBe", (imejl, lozinka) => {
             password: lozinka
         }
 
-    }).then((resp)=>{
+    }).then((resp) => {
         expect(resp.body).to.have.property('access_token')
         localStorage.setItem('token', resp.body.access_token)
         cy.visit('/')
-     }) 
-
-
+    })
 
 })
 
+Cypress.Commands.add("deleteGallery", (idGallery) => {
+
+    cy.request({
+        method: 'DELETE',
+        url: Cypress.env('apiUrl') + '/galleries/' + idGallery,
+        form: true,
+        followRedirect: true,
+        headers: {
+            authorization: `Bearer ${window.localStorage.getItem('token')}`,
+        }
+
+    })
+
+})
+/* cy.request({
+            method: 'DELETE',
+            url: Cypress.env('apiUrl') + '/galleries/' + resp.body.galleries[0].id,
+            form: true,
+            followRedirect: true,
+            headers: {
+                authorization: `Bearer ${window.localStorage.getItem('token')}`,
+            }
+            
+    
+        })
+    })*/

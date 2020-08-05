@@ -21,17 +21,29 @@ it('What?', () => {
     cy.visit('/my-galleries');
     cy.wait('@homepage');
     cy.get('@homepage').its('response').then((resp) => {
+        
+        //Find how to grab number of children AKA cells
+        //cy.log(cy.get('.grid').children.length);
+    
+
+
         for (var i = 0; i < 10; i++) {
-            cy.request({
-                method: 'DELETE',
-                url: Cypress.env('apiUrl') + '/galleries/' + resp.body.galleries[i].id,
-                form: true,
-                followRedirect: true,
-                headers: {
-                    authorization: `Bearer ${window.localStorage.getItem('token')}`,
-                }
-            })
+            let useCaseID = resp.body.galleries[i].id;
+            cy.deleteGallery(useCaseID);
         }
+
+
+        // for (var i = 0; i < 10; i++) {
+        //     cy.request({
+        //         method: 'DELETE',
+        //         url: Cypress.env('apiUrl') + '/galleries/' + resp.body.galleries[i].id,
+        //         form: true,
+        //         followRedirect: true,
+        //         headers: {
+        //             authorization: `Bearer ${window.localStorage.getItem('token')}`,
+        //         }
+        // })
+        // }
         /* same as previous
         for (var i = 0; i < 10; i++) {
             let useCaseID = resp.body.galleries[i].id;

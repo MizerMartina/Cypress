@@ -1,0 +1,775 @@
+{
+	"info": {
+		"_postman_id": "ff013b00-5146-4ec7-a525-bbd721aa8a38",
+		"name": "Galerija-2-kurs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5056f33d-5d6c-4a5f-a03d-a68e66af5826",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"console.log(jsonData.access_tokem)",
+									"pm.environment.set(\"galerija_token\", jsonData.access_token);",
+									"",
+									"pm.environment.set(\"user_id\", jsonData.user_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"test@test.com\",\"password\":\"12345678\"}"
+						},
+						"url": {
+							"raw": "{{url}}auth/login",
+							"host": [
+								"{{url}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5056f33d-5d6c-4a5f-a03d-a68e66af5826",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"",
+									"",
+									"const schema = {",
+									"    \"type\" : \"object\",",
+									"    \"properties\" : {",
+									"        \"access_token\" : {\"type\" : \"string\"},",
+									"        \"expires_in\" : {\"type\" : \"number\"},",
+									"        \"user_id\" : {\"type\" : \"number\"},",
+									"    },",
+									"    \"required\" : [\"access_token\", \"expires_in\", \"user_id\"]",
+									"};",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"test@test.com\",\"password\":\"12345678\"}"
+						},
+						"url": {
+							"raw": "{{url}}auth/login",
+							"host": [
+								"{{url}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Home",
+			"item": [
+				{
+					"name": "my-galeries",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{galerija_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}my-galleries?page=1&term=",
+							"host": [
+								"{{url}}my-galleries"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "term",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CreateGalery",
+			"item": [
+				{
+					"name": "get_gallery",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3fdb4484-84f3-4421-8f10-12b76a5f8618",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"No comments\", function() {",
+									"",
+									"    pm.expect(jsonData.comments.length).to.eql(0);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{galerija_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n"
+						},
+						"url": {
+							"raw": "{{url}}galleries/{{galerija_id}}",
+							"host": [
+								"{{url}}galleries"
+							],
+							"path": [
+								"{{galerija_id}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_all_galleries",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8e1d228-506e-4b3e-bae6-8205bbfd6492",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"//provera da stari id galerije ne postoji",
+									"var idObrisaneGalerije = pm.variables.get(\"galerija_id\");",
+									"var idExist = false;",
+									"for (i=0; i<jsonData.galleries.length;i++){",
+									"  if (jsonData.galleries[i].id == idObrisaneGalerije){",
+									"      idExist = true;",
+									"  }",
+									"}",
+									"tests[\"Stvarno je izbrisan\"] = idExist === false;",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{galerija_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}galleries?page=1&term=",
+							"host": [
+								"{{url}}galleries"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "term",
+									"value": ""
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_all_galleries Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8e1d228-506e-4b3e-bae6-8205bbfd6492",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"//provera da stari id galerije ne postoji",
+									"",
+									"",
+									"var allGalleriesNumber = jsonData.count;",
+									"console.log(allGalleriesNumber);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{galerija_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}galleries?page=1&term=",
+							"host": [
+								"{{url}}galleries"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "term",
+									"value": ""
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_galery",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4b30095-806c-4427-9708-6b715357a735",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set(\"galerija_id\", jsonData.id);",
+									"",
+									"tests[\"gallery id = \" + jsonData.id] = typeof jsonData.id == \"number\";"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{galerija_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\":\"test galerija\",\"description\":\"test test\",\"images\":[\"http://qnimate.com/wp-content/uploads/2014/03/images2.jpg\"]}"
+						},
+						"url": {
+							"raw": "{{url}}galleries",
+							"host": [
+								"{{url}}galleries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_galery Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4b30095-806c-4427-9708-6b715357a735",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set(\"galerija_id\", jsonData.id);",
+									"",
+									"tests[\"gallery id = \" + jsonData.id] = typeof jsonData.id == \"number\";",
+									"",
+									"pm.test (\"String description\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"test\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{galerija_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\":\"test galerija\",\"description\":\"test_{{$randomInt}}\",\"images\":[\"http://qnimate.com/wp-content/uploads/2014/03/images2.jpg\"]}"
+						},
+						"url": {
+							"raw": "{{url}}galleries",
+							"host": [
+								"{{url}}galleries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit_galery",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1cdfcd67-f453-45d8-a6b8-f9b6c5bc6c5a",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set(\"galerija_id\", jsonData.id);",
+									"",
+									"tests[\"gallery title = \" + jsonData.title] = jsonData.title === \"izmenjen title\";"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{galerija_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\":\"izmenjen title\",\"description\":\"test test\",\"images\":[\"http://qnimate.com/wp-content/uploads/2014/03/images2.jpg\"]}"
+						},
+						"url": {
+							"raw": "{{url}}galleries/{{galerija_id}}",
+							"host": [
+								"{{url}}galleries"
+							],
+							"path": [
+								"{{galerija_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f290eb6d-830b-4896-b3ed-aef8b13dbb31",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var user_id = pm.environment.get(\"user_id\");",
+									"var commentUser = jsonData[0].user_id;",
+									"",
+									"tests[\"User ID = \" + commentUser] = commentUser === user_id;",
+									"",
+									"",
+									"var gallery_id = pm.environment.get(\"galerija_id\");",
+									"var commentGallery = jsonData[0].gallery_id;",
+									"",
+									"tests[\"Gallery ID = \" + commentGallery] = commentGallery === commentGallery;",
+									"",
+									"",
+									"pm.environment.set(\"comment_id\", jsonData[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{galerija_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"gallery_id\":{{galerija_id}},\"body\":\"Vat!\"}"
+						},
+						"url": {
+							"raw": "{{url}}comments",
+							"host": [
+								"{{url}}comments"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_comment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{galerija_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}comments/{{comment_id}}",
+							"host": [
+								"{{url}}comments"
+							],
+							"path": [
+								"{{comment_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login other user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5056f33d-5d6c-4a5f-a03d-a68e66af5826",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"other_user_token\", jsonData.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"ja@test.com\",\"password\":\"test1234\"}"
+						},
+						"url": {
+							"raw": "{{url}}auth/login",
+							"host": [
+								"{{url}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_galery_neg",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4fdd8540-fa84-4bae-a9dd-31ffae14fd8b",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.expect(jsonData.message).to.eql(\"Can't delete gallery if you are not owner\");",
+									"",
+									"tests[\"Message = \" + jsonData.message] = jsonData.message === \"Can't delete gallery if you are not owner\";"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{other_user_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}galleries/{{galerija_id}}",
+							"host": [
+								"{{url}}galleries"
+							],
+							"path": [
+								"{{galerija_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_galery",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4fdd8540-fa84-4bae-a9dd-31ffae14fd8b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{galerija_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}galleries/{{galerija_id}}",
+							"host": [
+								"{{url}}galleries"
+							],
+							"path": [
+								"{{galerija_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

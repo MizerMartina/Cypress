@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "66be8936-5489-42bc-9f31-a7c25bca5c09",
+		"name": "Vivify_Scrum",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "91af6645-2dcd-40f8-8aff-e9ef8631fcb1",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"current_user_token\", jsonData.token);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"mizermartina@gmail.com\",\"password\":\"skramSranje21\",\"g-recaptcha-response\":\"03AGdBq24jzsUyBmKHzEDrhKBuadmK8xfWwB5sE4ivnIMejA_bm3RCEkFAfXNRjlw3KzVcpvtp3RkXRpu--ND-lbJJXvj9jGxZ5knUut1ZRkk64-Xe30SbArpBjXpdmQQx4xYGVC9_4LGGTrF19ezE1qvINuynHXOSooy09k6zuZrtMyPRAfyq7__SozhMN2w6dIT9NaT6es3YgF8KDfbj2dZQTA1KaaDLk0tYgsQbKYQei6P7zeFu4mqkDwzcDC3PDNePXeZlshqCLcxYZYy9jaCpNKRZJwukG2RYAF_e-mxZHGRlDh27KGwB5yFg50Rkwt5bks72JYF95a53hNMLU2dcvX7N66P9sjijGCtVxhHtZTIqTfQz4ml0-dIhitN6V8in4Cz_g5Oh0n2Vgdiq7wA1MdJRlbIkWA\"}"
+						},
+						"url": {
+							"raw": "{{url}}v2/login",
+							"host": [
+								"{{url}}v2"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create task",
+			"item": [
+				{
+					"name": "create_task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{current_user_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"item\": {\n    \"name\": \"Taskingking\",\n    \"board_id\": 94979,\n    \"sprint_id\": 297008,\n    \"sprint_backlog_column_id\": null,\n    \"priority_id\": 2,\n    \"parent_id\": null,\n    \"labels\": [],\n    \"doers\": [],\n    \"reviewers\": [],\n    \"type_id\": 1,\n    \"points_id\": null,\n    \"taskvalue_id\": 1,\n    \"checklists\": [],\n    \"blocking_task_id\": null\n  },\n  \"prev\": null,\n  \"next\": {\n    \"id\": 2393288,\n    \"order\": -3997.11\n  },\n  \"board_id\": 94979,\n  \"isOnSprint\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}v2/tasks",
+							"host": [
+								"{{url}}v2"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
